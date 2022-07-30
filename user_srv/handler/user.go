@@ -40,7 +40,7 @@ func Paginate(page, pageSize int) func(db *gorm.DB) *gorm.DB {
 	}
 }
 
-func ModelToRsponse(user model.User) proto.UserInfoResponse {
+func ModelToResponse(user model.User) proto.UserInfoResponse {
 	//在grpc的message中字段有默认值，你不能随便赋值nil进去，容易出错
 	//这里要搞清， 哪些字段是有默认值
 	userInfoRsp := proto.UserInfoResponse{
@@ -71,7 +71,7 @@ func (s *UserServer) GetUserList(ctx context.Context, req *proto.PageInfo) (*pro
 	global.DB.Scopes(Paginate(int(req.Pn), int(req.PSize))).Find(&users)
 
 	for _, user := range users {
-		userInfoRsp := ModelToRsponse(user)
+		userInfoRsp := ModelToResponse(user)
 		rsp.Data = append(rsp.Data, &userInfoRsp)
 	}
 	return rsp, nil
@@ -88,7 +88,7 @@ func (s *UserServer) GetUserByMobile(ctx context.Context, req *proto.MobileReque
 		return nil, result.Error
 	}
 
-	userInfoRsp := ModelToRsponse(user)
+	userInfoRsp := ModelToResponse(user)
 	return &userInfoRsp, nil
 }
 
@@ -103,7 +103,7 @@ func (s *UserServer) GetUserById(ctx context.Context, req *proto.IdRequest) (*pr
 		return nil, result.Error
 	}
 
-	userInfoRsp := ModelToRsponse(user)
+	userInfoRsp := ModelToResponse(user)
 	return &userInfoRsp, nil
 }
 
@@ -128,7 +128,7 @@ func (s *UserServer) CreateUser(ctx context.Context, req *proto.CreateUserInfo) 
 		return nil, status.Errorf(codes.Internal, result.Error.Error())
 	}
 
-	userInfoRsp := ModelToRsponse(user)
+	userInfoRsp := ModelToResponse(user)
 	return &userInfoRsp, nil
 }
 

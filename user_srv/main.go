@@ -11,6 +11,7 @@ import (
 	"nd/user_srv/handler"
 	"nd/user_srv/initialize"
 	"nd/user_srv/proto"
+	"nd/user_srv/utils"
 	"net"
 
 	"google.golang.org/grpc"
@@ -18,7 +19,7 @@ import (
 
 func main() {
 	IP := flag.String("ip", "0.0.0.0", "ip地址")
-	Port := flag.Int("port", 50051, "端口号")
+	Port := flag.Int("port", 0, "端口号") // 这个修改为0，如果我们从命令行带参数启动的话就不会为0
 
 	//初始化
 	initialize.InitLogger()
@@ -28,6 +29,9 @@ func main() {
 
 	flag.Parse()
 	zap.S().Info("ip: ", *IP)
+	if *Port == 0 {
+		*Port, _ = utils.GetFreePort()
+	}
 	zap.S().Info("port: ", *Port)
 
 	server := grpc.NewServer()
