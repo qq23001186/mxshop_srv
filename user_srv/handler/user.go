@@ -64,7 +64,7 @@ func (s *UserServer) GetUserList(ctx context.Context, req *proto.PageInfo) (*pro
 	if result.Error != nil {
 		return nil, result.Error
 	}
-	fmt.Println("用户列表")
+	fmt.Println(time.Now().Format("2006-01-02 15:04:05.000"), "用户列表")
 	rsp := &proto.UserListResponse{}
 	rsp.Total = int32(result.RowsAffected)
 

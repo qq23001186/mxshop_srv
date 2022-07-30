@@ -14,7 +14,8 @@ var conn *grpc.ClientConn
 
 func Init() {
 	var err error
-	conn, err = grpc.Dial("127.0.0.1:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	// 这里如果需要运行，注意修改端口 -> 与srv的启动端口要一致
+	conn, err = grpc.Dial("127.0.0.1:58940", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		panic(err)
 	}
@@ -58,8 +59,8 @@ func TestCreateUser() {
 
 func main() {
 	Init()
-	//TestCreateUser()
-	TestGetUserList()
+	TestCreateUser()
+	//TestGetUserList()
 
 	conn.Close()
 }
