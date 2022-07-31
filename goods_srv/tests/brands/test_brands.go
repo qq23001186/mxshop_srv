@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"nd/goods_srv/tests"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -26,7 +27,7 @@ func TestGetBrandList() {
 
 func Init() {
 	var err error
-	conn, err = grpc.Dial("127.0.0.1:50058", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err = grpc.Dial(tests.TargetAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		panic(err)
 	}
