@@ -1,0 +1,222 @@
+[
+  {
+    "index": 0,
+    "name": "用户",
+    "desc": "用户相关的接口",
+    "add_time": 1658048359,
+    "up_time": 1658048359,
+    "list": [
+      {
+        "query_path": {
+          "path": "/u/v1/base/send_sms",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": false,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 27,
+        "method": "POST",
+        "catid": 14,
+        "title": "发送短信",
+        "path": "/u/v1/base/send_sms",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1658930638,
+        "up_time": 1658930806,
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "62e14676663aeec16a297660",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"mobile\":{\"type\":\"string\",\"description\":\"手机号码\",\"mock\":{\"mock\":\"15980261234\"}},\"type\":{\"type\":\"integer\",\"description\":\"1=注册，2=找回密码\",\"mock\":{\"mock\":\"1\"}}}}",
+        "req_body_type": "json",
+        "res_body": ""
+      },
+      {
+        "query_path": {
+          "path": "/u/v1/user/register",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 30,
+        "method": "POST",
+        "catid": 14,
+        "title": "注册",
+        "path": "/u/v1/user/register",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1658931941,
+        "up_time": 1658932313,
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "62e14c59663aee1a48297663",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"短信验证码\"},\"mobile\":{\"type\":\"string\",\"description\":\"手机号码\"},\"password\":{\"type\":\"string\",\"description\":\"密码\"}},\"required\":[\"code\",\"mobile\",\"password\"]}",
+        "req_body_type": "json",
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"id\":{\"type\":\"integer\",\"description\":\"用户id\"},\"nick_name\":{\"type\":\"string\",\"description\":\"昵称\"},\"token\":{\"type\":\"string\",\"description\":\"jwt的token\"}},\"required\":[\"id\",\"nick_name\",\"token\"]}"
+      },
+      {
+        "query_path": {
+          "path": "/u/v1/user/list",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": false,
+        "res_body_is_json_schema": false,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 18,
+        "method": "GET",
+        "catid": 14,
+        "title": "用户列表",
+        "path": "/u/v1/user/list",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1658326264,
+        "up_time": 1658925933,
+        "req_query": [
+          {
+            "required": "0",
+            "_id": "62e0f449554635e4e385a1d3",
+            "name": "pn",
+            "example": "1",
+            "desc": "分页的页码"
+          },
+          {
+            "required": "0",
+            "_id": "62e0f449554635c8f185a1d2",
+            "name": "psize",
+            "example": "2",
+            "desc": "分页的每页数量"
+          }
+        ],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "res_body": ""
+      },
+      {
+        "query_path": {
+          "path": "/u/v1/user/pwd_login-delete",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": false,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 21,
+        "method": "POST",
+        "catid": 14,
+        "title": "登录-用户名/密码",
+        "path": "/u/v1/user/pwd_login-delete",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "62e13dfd663aee528329765a",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "req_body_form": [],
+        "desc": "",
+        "markdown": "",
+        "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"mobile\":{\"type\":\"string\",\"description\":\"手机号码\",\"mock\":{\"mock\":\"18782222220\"}},\"password\":{\"type\":\"string\",\"description\":\"密码\",\"mock\":{\"mock\":\"admin123\"}}}}",
+        "req_body_type": "json",
+        "res_body": "",
+        "uid": 11,
+        "add_time": 1658925933,
+        "up_time": 1658928637,
+        "__v": 0
+      },
+      {
+        "query_path": {
+          "path": "/u/v1/user/pwd_login",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": false,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 24,
+        "method": "POST",
+        "catid": 14,
+        "title": "登录-用户名/密码/图片验证",
+        "path": "/u/v1/user/pwd_login",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1658928344,
+        "up_time": 1658928647,
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "62e13e07663aeedaf029765b",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"mobile\":{\"type\":\"string\",\"description\":\"手机号\",\"mock\":{\"mock\":\"18782222220\"}},\"password\":{\"type\":\"string\",\"mock\":{\"mock\":\"admin123\"},\"description\":\"密码\"},\"captcha\":{\"type\":\"string\",\"mock\":{\"mock\":\"@string\"},\"description\":\"验证码\"},\"captcha_id\":{\"type\":\"string\",\"mock\":{\"mock\":\"@string\"},\"description\":\"验证码id\"}},\"required\":[\"mobile\",\"password\",\"captcha\",\"captcha_id\"]}",
+        "req_body_type": "json",
+        "res_body": ""
+      }
+    ]
+  }
+]
