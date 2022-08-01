@@ -19,7 +19,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 27,
+        "_id": 14,
         "method": "POST",
         "catid": 14,
         "title": "发送短信",
@@ -27,9 +27,6 @@
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
-        "uid": 11,
-        "add_time": 1658930638,
-        "up_time": 1658930806,
         "req_query": [],
         "req_headers": [
           {
@@ -40,12 +37,15 @@
           }
         ],
         "req_body_form": [],
-        "__v": 0,
         "desc": "",
         "markdown": "",
         "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"mobile\":{\"type\":\"string\",\"description\":\"手机号码\",\"mock\":{\"mock\":\"15980261234\"}},\"type\":{\"type\":\"integer\",\"description\":\"1=注册，2=找回密码\",\"mock\":{\"mock\":\"1\"}}}}",
         "req_body_type": "json",
-        "res_body": ""
+        "res_body": "",
+        "uid": 11,
+        "add_time": 1659197881,
+        "up_time": 1659366589,
+        "__v": 0
       },
       {
         "query_path": {
@@ -60,7 +60,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 30,
+        "_id": 17,
         "method": "POST",
         "catid": 14,
         "title": "注册",
@@ -68,9 +68,6 @@
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
-        "uid": 11,
-        "add_time": 1658931941,
-        "up_time": 1658932313,
         "req_query": [],
         "req_headers": [
           {
@@ -81,12 +78,15 @@
           }
         ],
         "req_body_form": [],
-        "__v": 0,
         "desc": "",
         "markdown": "",
         "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"短信验证码\"},\"mobile\":{\"type\":\"string\",\"description\":\"手机号码\"},\"password\":{\"type\":\"string\",\"description\":\"密码\"}},\"required\":[\"code\",\"mobile\",\"password\"]}",
         "req_body_type": "json",
-        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"id\":{\"type\":\"integer\",\"description\":\"用户id\"},\"nick_name\":{\"type\":\"string\",\"description\":\"昵称\"},\"token\":{\"type\":\"string\",\"description\":\"jwt的token\"}},\"required\":[\"id\",\"nick_name\",\"token\"]}"
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"id\":{\"type\":\"integer\",\"description\":\"用户id\"},\"nick_name\":{\"type\":\"string\",\"description\":\"昵称\"},\"token\":{\"type\":\"string\",\"description\":\"jwt的token\"}},\"required\":[\"id\",\"nick_name\",\"token\"]}",
+        "uid": 11,
+        "add_time": 1659197881,
+        "up_time": 1659366589,
+        "__v": 0
       },
       {
         "query_path": {
@@ -101,7 +101,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 18,
+        "_id": 20,
         "method": "GET",
         "catid": 14,
         "title": "用户列表",
@@ -109,9 +109,6 @@
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
-        "uid": 11,
-        "add_time": 1658326264,
-        "up_time": 1658925933,
         "req_query": [
           {
             "required": "0",
@@ -130,10 +127,54 @@
         ],
         "req_headers": [],
         "req_body_form": [],
+        "desc": "",
+        "markdown": "",
+        "res_body": "",
+        "uid": 11,
+        "add_time": 1659197881,
+        "up_time": 1659366589,
+        "__v": 0
+      },
+      {
+        "query_path": {
+          "path": "/login",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 11,
+        "method": "POST",
+        "catid": 14,
+        "title": "登录",
+        "path": "/login",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1658048432,
+        "up_time": 1658050396,
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "62d3d75c9c4f50acb1290dd2",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "req_body_form": [],
         "__v": 0,
         "desc": "",
         "markdown": "",
-        "res_body": ""
+        "req_body_type": "json",
+        "res_body": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":[\"token\"]}",
+        "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"mobile\":{\"type\":\"string\",\"mock\":{\"mock\":\"15980261234\"},\"description\":\"手机号码\"},\"password\":{\"type\":\"string\",\"description\":\"密码\"}},\"required\":[\"mobile\",\"password\"]}"
       },
       {
         "query_path": {
@@ -148,7 +189,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 21,
+        "_id": 23,
         "method": "POST",
         "catid": 14,
         "title": "登录-用户名/密码",
@@ -172,8 +213,8 @@
         "req_body_type": "json",
         "res_body": "",
         "uid": 11,
-        "add_time": 1658925933,
-        "up_time": 1658928637,
+        "add_time": 1659197881,
+        "up_time": 1659366589,
         "__v": 0
       },
       {
@@ -189,7 +230,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 24,
+        "_id": 26,
         "method": "POST",
         "catid": 14,
         "title": "登录-用户名/密码/图片验证",
@@ -197,9 +238,6 @@
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
-        "uid": 11,
-        "add_time": 1658928344,
-        "up_time": 1658928647,
         "req_query": [],
         "req_headers": [
           {
@@ -210,12 +248,15 @@
           }
         ],
         "req_body_form": [],
-        "__v": 0,
         "desc": "",
         "markdown": "",
         "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"mobile\":{\"type\":\"string\",\"description\":\"手机号\",\"mock\":{\"mock\":\"18782222220\"}},\"password\":{\"type\":\"string\",\"mock\":{\"mock\":\"admin123\"},\"description\":\"密码\"},\"captcha\":{\"type\":\"string\",\"mock\":{\"mock\":\"@string\"},\"description\":\"验证码\"},\"captcha_id\":{\"type\":\"string\",\"mock\":{\"mock\":\"@string\"},\"description\":\"验证码id\"}},\"required\":[\"mobile\",\"password\",\"captcha\",\"captcha_id\"]}",
         "req_body_type": "json",
-        "res_body": ""
+        "res_body": "",
+        "uid": 11,
+        "add_time": 1659197881,
+        "up_time": 1659366589,
+        "__v": 0
       }
     ]
   },
@@ -223,8 +264,8 @@
     "index": 0,
     "name": "商品",
     "desc": "商品微服务",
-    "add_time": 1659363363,
-    "up_time": 1659363363,
+    "add_time": 1659366589,
+    "up_time": 1659366589,
     "list": [
       {
         "query_path": {
@@ -235,88 +276,85 @@
         "status": "undone",
         "type": "static",
         "req_body_is_json_schema": false,
-        "res_body_is_json_schema": false,
+        "res_body_is_json_schema": true,
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 34,
+        "_id": 29,
         "method": "GET",
-        "catid": 15,
+        "catid": 17,
         "title": "商品列表",
         "path": "/g/v1/goods",
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
-        "uid": 11,
-        "add_time": 1659363385,
-        "up_time": 1659363554,
         "req_query": [
           {
             "required": "0",
-            "_id": "62e7e0e293f48b74a176d771",
+            "_id": "62e7f4a6bdae3409bd4dd05a",
             "name": "pmin",
             "example": "10",
             "desc": "最低价格"
           },
           {
             "required": "0",
-            "_id": "62e7e0e293f48b7d9376d770",
+            "_id": "62e7f4a6bdae34b1434dd059",
             "name": "pmax",
             "example": "20",
             "desc": "最高价格"
           },
           {
             "required": "0",
-            "_id": "62e7e0e293f48be01876d76f",
+            "_id": "62e7f4a6bdae3402d54dd058",
             "name": "ih",
             "example": "1",
             "desc": "是否热门"
           },
           {
             "required": "0",
-            "_id": "62e7e0e293f48b3fe576d76e",
+            "_id": "62e7f4a6bdae3425a44dd057",
             "name": "in",
             "example": "1",
             "desc": "是否最新"
           },
           {
             "required": "0",
-            "_id": "62e7e0e293f48ba2b976d76d",
+            "_id": "62e7f4a6bdae34f3094dd056",
             "name": "it",
             "example": "1",
             "desc": "是否tab栏"
           },
           {
             "required": "0",
-            "_id": "62e7e0e293f48bd71976d76c",
+            "_id": "62e7f4a6bdae34412d4dd055",
             "name": "c",
             "example": "1",
             "desc": "分类的id"
           },
           {
             "required": "0",
-            "_id": "62e7e0e293f48b2af376d76b",
+            "_id": "62e7f4a6bdae3458724dd054",
             "name": "pn",
             "example": "1",
             "desc": "页码"
           },
           {
             "required": "0",
-            "_id": "62e7e0e293f48b2ec376d76a",
+            "_id": "62e7f4a6bdae34eeb94dd053",
             "name": "pnum",
             "example": "10",
             "desc": "每页的数量"
           },
           {
             "required": "0",
-            "_id": "62e7e0e293f48b0ea076d769",
+            "_id": "62e7f4a6bdae3464384dd052",
             "name": "q",
             "example": "啤酒",
             "desc": "搜索关键词"
           },
           {
             "required": "0",
-            "_id": "62e7e0e293f48b0cfa76d768",
+            "_id": "62e7f4a6bdae341f464dd051",
             "name": "b",
             "example": "1",
             "desc": "品牌id"
@@ -324,10 +362,13 @@
         ],
         "req_headers": [],
         "req_body_form": [],
-        "__v": 0,
         "desc": "",
         "markdown": "",
-        "res_body": ""
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"brand\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"logo\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}}},\"category\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"name\":{\"type\":\"string\"}}},\"desc\":{\"type\":\"string\"},\"ship_free\":{\"type\":\"boolean\"},\"shop_price\":{\"type\":\"number\"},\"desc_images\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"front_image\":{\"type\":\"string\"},\"goods_brief\":{\"type\":\"string\"},\"id\":{\"type\":\"number\"},\"images\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"is_hot\":{\"type\":\"boolean\"},\"is_new\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"on_sale\":{\"type\":\"boolean\"}},\"required\":[\"brand\",\"category\",\"desc\",\"desc_images\",\"front_image\",\"goods_brief\",\"id\",\"images\",\"is_hot\",\"is_new\",\"name\",\"on_sale\",\"ship_free\",\"shop_price\"]}},\"total\":{\"type\":\"number\"}},\"required\":[\"total\"]}",
+        "uid": 11,
+        "add_time": 1659366589,
+        "up_time": 1659368614,
+        "__v": 0
       }
     ]
   }
