@@ -218,5 +218,117 @@
         "res_body": ""
       }
     ]
+  },
+  {
+    "index": 0,
+    "name": "商品",
+    "desc": "商品微服务",
+    "add_time": 1659363363,
+    "up_time": 1659363363,
+    "list": [
+      {
+        "query_path": {
+          "path": "/g/v1/goods",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": false,
+        "res_body_is_json_schema": false,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 34,
+        "method": "GET",
+        "catid": 15,
+        "title": "商品列表",
+        "path": "/g/v1/goods",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1659363385,
+        "up_time": 1659363554,
+        "req_query": [
+          {
+            "required": "0",
+            "_id": "62e7e0e293f48b74a176d771",
+            "name": "pmin",
+            "example": "10",
+            "desc": "最低价格"
+          },
+          {
+            "required": "0",
+            "_id": "62e7e0e293f48b7d9376d770",
+            "name": "pmax",
+            "example": "20",
+            "desc": "最高价格"
+          },
+          {
+            "required": "0",
+            "_id": "62e7e0e293f48be01876d76f",
+            "name": "ih",
+            "example": "1",
+            "desc": "是否热门"
+          },
+          {
+            "required": "0",
+            "_id": "62e7e0e293f48b3fe576d76e",
+            "name": "in",
+            "example": "1",
+            "desc": "是否最新"
+          },
+          {
+            "required": "0",
+            "_id": "62e7e0e293f48ba2b976d76d",
+            "name": "it",
+            "example": "1",
+            "desc": "是否tab栏"
+          },
+          {
+            "required": "0",
+            "_id": "62e7e0e293f48bd71976d76c",
+            "name": "c",
+            "example": "1",
+            "desc": "分类的id"
+          },
+          {
+            "required": "0",
+            "_id": "62e7e0e293f48b2af376d76b",
+            "name": "pn",
+            "example": "1",
+            "desc": "页码"
+          },
+          {
+            "required": "0",
+            "_id": "62e7e0e293f48b2ec376d76a",
+            "name": "pnum",
+            "example": "10",
+            "desc": "每页的数量"
+          },
+          {
+            "required": "0",
+            "_id": "62e7e0e293f48b0ea076d769",
+            "name": "q",
+            "example": "啤酒",
+            "desc": "搜索关键词"
+          },
+          {
+            "required": "0",
+            "_id": "62e7e0e293f48b0cfa76d768",
+            "name": "b",
+            "example": "1",
+            "desc": "品牌id"
+          }
+        ],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "res_body": ""
+      }
+    ]
   }
 ]
