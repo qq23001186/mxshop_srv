@@ -23,9 +23,9 @@ func Init() {
 
 func TestGetGoodsList() {
 	rsp, err := brandClient.GoodsList(context.Background(), &proto.GoodsFilterRequest{
-		TopCategory: 1001,
-		//PriceMin:    90,
-		//KeyWords: "深海速冻",
+		//TopCategory: 2007,
+		PriceMin: 10,
+		KeyWords: "水",
 	})
 	if err != nil {
 		panic(err)
@@ -36,8 +36,36 @@ func TestGetGoodsList() {
 	}
 }
 
+func TestBatchGetGoods() {
+	rsp, err := brandClient.BatchGetGoods(context.Background(), &proto.BatchGoodsIdInfo{
+		Id: []int32{29, 30, 31},
+	})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(rsp.Total)
+	for _, good := range rsp.Data {
+		fmt.Println(good.Name, good.ShopPrice)
+	}
+}
+
+func TestGetGoodsDetail() {
+	rsp, err := brandClient.GetGoodsDetail(context.Background(), &proto.GoodInfoRequest{
+		Id: 28,
+	})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(rsp.Name)
+	fmt.Println(rsp.ShopPrice)
+	fmt.Println(rsp.MarketPrice)
+}
+
 func main() {
 	Init()
-	TestGetGoodsList()
+	//TestGetGoodsList()
+	TestBatchGetGoods()
+	fmt.Println("----------------------------")
+	TestGetGoodsDetail()
 	conn.Close()
 }

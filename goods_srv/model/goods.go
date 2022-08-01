@@ -61,15 +61,15 @@ type Goods struct {
 	IsNew    bool `gorm:"default:false;not null;comment:'是否新品'"`
 	IsHot    bool `gorm:"default:false;not null;comment:'是否热卖商品'"`
 
-	Name            string   `gorm:"type:varchar(50);not null"`
-	GoodsSn         string   `gorm:"type:varchar(50);not null;comment:'商家的内部编号'"`
-	ClickNum        int32    `gorm:"type:int;default:0;not null;comment:'点击数'"`
-	SoldNum         int32    `gorm:"type:int;default:0;not null;comment:'销售量'"`
-	FavNum          int32    `gorm:"type:int;default:0;not null;comment:'收藏数'"`
-	MarketPrice     float32  `gorm:"not null;comment:'商品价格'"`
-	ShopPrice       float32  `gorm:"not null;comment:'实际价格'"`
-	GoodsBrief      string   `gorm:"type:varchar(100);not null;comment:'商品简介'"`
-	Images          GormList `gorm:"type:varchar(1000);not null;comment:'商品图片'"`
-	DescImages      GormList `gorm:"type:varchar(1000);not null;comment:'商品图片'"`
-	GoodsFrontImage string   `gorm:"type:varchar(200);not null;comment:'商品展示图'"`
+	Name        string  `gorm:"type:varchar(50);not null"`
+	GoodsSn     string  `gorm:"type:varchar(50);not null;comment:'商家的内部编号'"`
+	ClickNum    int32   `gorm:"type:int;default:0;not null;comment:'点击数'"`
+	SoldNum     int32   `gorm:"type:int;default:0;not null;comment:'销售量'"`
+	FavNum      int32   `gorm:"type:int;default:0;not null;comment:'收藏数'"`
+	MarketPrice float32 `gorm:"not null;comment:'商品价格'"`
+	ShopPrice   float32 `gorm:"not null;comment:'实际价格'"`
+	GoodsBrief  string  `gorm:"type:varchar(100);not null;comment:'商品简介'"`
+	//Images          GormList `gorm:"type:varchar(1000);not null;comment:'商品图片'"`
+	//DescImages      GormList `gorm:"type:varchar(1000);not null;comment:'商品图片'"`
+	GoodsFrontImage string `gorm:"type:varchar(200);not null;comment:'商品展示图'"`
 }
