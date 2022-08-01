@@ -3,34 +3,22 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/golang/protobuf/ptypes/empty"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"nd/goods_srv/tests"
-
 	"nd/goods_srv/proto"
+	"nd/goods_srv/tests"
 )
 
 var brandClient proto.GoodsClient
 var conn *grpc.ClientConn
 
-func TestGetCategoryList() {
-	rsp, err := brandClient.GetAllCategorysList(context.Background(), &empty.Empty{})
+func TestGetCategoryBrandList() {
+	rsp, err := brandClient.CategoryBrandList(context.Background(), &proto.CategoryBrandFilterRequest{})
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println(rsp.Total)
-	fmt.Println(rsp.JsonData)
-}
-
-func TestGetSubCategoryList() {
-	rsp, err := brandClient.GetSubCategory(context.Background(), &proto.CategoryListRequest{
-		Id: 1001,
-	})
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(rsp.SubCategorys)
+	fmt.Println(rsp.Data)
 }
 
 func Init() {
@@ -44,8 +32,7 @@ func Init() {
 
 func main() {
 	Init()
-	//TestGetCategoryList()
-	TestGetSubCategoryList()
+	TestGetCategoryBrandList()
 
 	conn.Close()
 }

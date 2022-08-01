@@ -1,7 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
+	"nd/user_srv/global"
+	"nd/user_srv/initialize"
 	"nd/user_srv/model"
 	"os"
 	"time"
@@ -13,7 +16,8 @@ import (
 )
 
 func main() {
-	dsn := "root:jiushi@tcp(192.168.124.51:3306)/mxshop_user_srv?charset=utf8mb4&parseTime=True&loc=Local"
+	initialize.InitConfig()
+	dsn := fmt.Sprintf("root:jiushi@tcp(%s:3306)/mxshop_user_srv?charset=utf8mb4&parseTime=True&loc=Local", global.ServerConfig.MysqlInfo.Host)
 
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer

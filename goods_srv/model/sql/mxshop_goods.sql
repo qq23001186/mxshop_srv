@@ -1,4 +1,5 @@
-
+#先关闭外键检查
+SET FOREIGN_KEY_CHECKS = 0;
 
 #drop TABLE banner;
 #drop table goods;
@@ -6,7 +7,7 @@
 #drop TABLE category;
 
 #drop TABLE brands;
-insert into brands (`id`,`name`,`id_deleted`) values
+insert into brands (`id`,`name`,`is_deleted`) values
 (1,"顶端",0),
 (2,"nba",0),
 (3,"文果",0),
@@ -75,3 +76,5 @@ INSERT INTO category (`id`,`name`,`is_deleted`,`parent_category_id`,`LEVEL`) VAL
 (3028,"百雀羚",0,2009,3),
 (3029,"妮维雅",0,2009,3);
 
+#插入数据后开启外键检查
+SET FOREIGN_KEY_CHECKS = 1;

@@ -12,19 +12,20 @@ import (
 	"nd/goods_srv/global"
 )
 
-func GetEnvInfo(env string) bool {
+func GetEnvInfo(env string) int {
 	viper.AutomaticEnv()
-	return viper.GetBool(env)
+	return viper.GetInt(env)
 	//刚才设置的环境变量 想要生效 我们必须得重启goland
 }
 
 func InitConfig() {
-	//从配置文件中读取出对应的配置
-	debug := GetEnvInfo("DEV_CONFIG")
+	flag := GetEnvInfo("DEV_CONFIG") // 1=zsz  2=comp  3=home
 	configFilePrefix := "config"
-	configFileName := fmt.Sprintf("%s_pro.yaml", configFilePrefix)
-	if debug {
-		configFileName = fmt.Sprintf("%s_debug.yaml", configFilePrefix)
+	configFileName := fmt.Sprintf("%s_zsz.yaml", configFilePrefix)
+	if flag == 2 {
+		configFileName = fmt.Sprintf("%s_comp.yaml", configFilePrefix)
+	} else if flag == 3 {
+		configFileName = fmt.Sprintf("%s_home.yaml", configFilePrefix)
 	}
 
 	v := viper.New()

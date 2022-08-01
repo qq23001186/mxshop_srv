@@ -105,11 +105,9 @@ func (s *GoodsServer) DeleteCategory(ctx context.Context, req *proto.DeleteCateg
 
 func (s *GoodsServer) UpdateCategory(ctx context.Context, req *proto.CategoryInfoRequest) (*emptypb.Empty, error) {
 	var category model.Category
-
 	if result := global.DB.First(&category, req.Id); result.RowsAffected == 0 {
 		return nil, status.Errorf(codes.NotFound, "商品分类不存在")
 	}
-
 	if req.Name != "" {
 		category.Name = req.Name
 	}
@@ -122,8 +120,6 @@ func (s *GoodsServer) UpdateCategory(ctx context.Context, req *proto.CategoryInf
 	if req.IsTab {
 		category.IsTab = req.IsTab
 	}
-
 	global.DB.Save(&category)
-
 	return &emptypb.Empty{}, nil
 }
