@@ -19,7 +19,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 14,
+        "_id": 20,
         "method": "POST",
         "catid": 14,
         "title": "发送短信",
@@ -43,8 +43,8 @@
         "req_body_type": "json",
         "res_body": "",
         "uid": 11,
-        "add_time": 1659197881,
-        "up_time": 1659366589,
+        "add_time": 1659322250,
+        "up_time": 1659428444,
         "__v": 0
       },
       {
@@ -60,7 +60,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 17,
+        "_id": 21,
         "method": "POST",
         "catid": 14,
         "title": "注册",
@@ -84,8 +84,8 @@
         "req_body_type": "json",
         "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"id\":{\"type\":\"integer\",\"description\":\"用户id\"},\"nick_name\":{\"type\":\"string\",\"description\":\"昵称\"},\"token\":{\"type\":\"string\",\"description\":\"jwt的token\"}},\"required\":[\"id\",\"nick_name\",\"token\"]}",
         "uid": 11,
-        "add_time": 1659197881,
-        "up_time": 1659366589,
+        "add_time": 1659322250,
+        "up_time": 1659428444,
         "__v": 0
       },
       {
@@ -101,7 +101,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 20,
+        "_id": 18,
         "method": "GET",
         "catid": 14,
         "title": "用户列表",
@@ -109,6 +109,9 @@
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1658326264,
+        "up_time": 1659428444,
         "req_query": [
           {
             "required": "0",
@@ -127,13 +130,10 @@
         ],
         "req_headers": [],
         "req_body_form": [],
+        "__v": 0,
         "desc": "",
         "markdown": "",
-        "res_body": "",
-        "uid": 11,
-        "add_time": 1659197881,
-        "up_time": 1659366589,
-        "__v": 0
+        "res_body": ""
       },
       {
         "query_path": {
@@ -148,7 +148,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 11,
+        "_id": 25,
         "method": "POST",
         "catid": 14,
         "title": "登录",
@@ -156,9 +156,6 @@
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
-        "uid": 11,
-        "add_time": 1658048432,
-        "up_time": 1658050396,
         "req_query": [],
         "req_headers": [
           {
@@ -169,12 +166,15 @@
           }
         ],
         "req_body_form": [],
-        "__v": 0,
         "desc": "",
         "markdown": "",
         "req_body_type": "json",
         "res_body": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":[\"token\"]}",
-        "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"mobile\":{\"type\":\"string\",\"mock\":{\"mock\":\"15980261234\"},\"description\":\"手机号码\"},\"password\":{\"type\":\"string\",\"description\":\"密码\"}},\"required\":[\"mobile\",\"password\"]}"
+        "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"mobile\":{\"type\":\"string\",\"mock\":{\"mock\":\"15980261234\"},\"description\":\"手机号码\"},\"password\":{\"type\":\"string\",\"description\":\"密码\"}},\"required\":[\"mobile\",\"password\"]}",
+        "uid": 11,
+        "add_time": 1659428444,
+        "up_time": 1659428444,
+        "__v": 0
       },
       {
         "query_path": {
@@ -189,7 +189,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 23,
+        "_id": 22,
         "method": "POST",
         "catid": 14,
         "title": "登录-用户名/密码",
@@ -213,8 +213,8 @@
         "req_body_type": "json",
         "res_body": "",
         "uid": 11,
-        "add_time": 1659197881,
-        "up_time": 1659366589,
+        "add_time": 1659322250,
+        "up_time": 1659428444,
         "__v": 0
       },
       {
@@ -230,7 +230,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 26,
+        "_id": 19,
         "method": "POST",
         "catid": 14,
         "title": "登录-用户名/密码/图片验证",
@@ -238,6 +238,9 @@
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1658823889,
+        "up_time": 1659428444,
         "req_query": [],
         "req_headers": [
           {
@@ -248,15 +251,12 @@
           }
         ],
         "req_body_form": [],
+        "__v": 0,
         "desc": "",
         "markdown": "",
         "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"mobile\":{\"type\":\"string\",\"description\":\"手机号\",\"mock\":{\"mock\":\"18782222220\"}},\"password\":{\"type\":\"string\",\"mock\":{\"mock\":\"admin123\"},\"description\":\"密码\"},\"captcha\":{\"type\":\"string\",\"mock\":{\"mock\":\"@string\"},\"description\":\"验证码\"},\"captcha_id\":{\"type\":\"string\",\"mock\":{\"mock\":\"@string\"},\"description\":\"验证码id\"}},\"required\":[\"mobile\",\"password\",\"captcha\",\"captcha_id\"]}",
         "req_body_type": "json",
-        "res_body": "",
-        "uid": 11,
-        "add_time": 1659197881,
-        "up_time": 1659366589,
-        "__v": 0
+        "res_body": ""
       }
     ]
   },
@@ -264,8 +264,8 @@
     "index": 0,
     "name": "商品",
     "desc": "商品微服务",
-    "add_time": 1659366589,
-    "up_time": 1659366589,
+    "add_time": 1659428444,
+    "up_time": 1659428444,
     "list": [
       {
         "query_path": {
@@ -280,9 +280,9 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 29,
+        "_id": 28,
         "method": "GET",
-        "catid": 17,
+        "catid": 20,
         "title": "商品列表",
         "path": "/g/v1/goods",
         "project_id": 11,
@@ -366,9 +366,50 @@
         "markdown": "",
         "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"brand\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"logo\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}}},\"category\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"name\":{\"type\":\"string\"}}},\"desc\":{\"type\":\"string\"},\"ship_free\":{\"type\":\"boolean\"},\"shop_price\":{\"type\":\"number\"},\"desc_images\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"front_image\":{\"type\":\"string\"},\"goods_brief\":{\"type\":\"string\"},\"id\":{\"type\":\"number\"},\"images\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"is_hot\":{\"type\":\"boolean\"},\"is_new\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"on_sale\":{\"type\":\"boolean\"}},\"required\":[\"brand\",\"category\",\"desc\",\"desc_images\",\"front_image\",\"goods_brief\",\"id\",\"images\",\"is_hot\",\"is_new\",\"name\",\"on_sale\",\"ship_free\",\"shop_price\"]}},\"total\":{\"type\":\"number\"}},\"required\":[\"total\"]}",
         "uid": 11,
-        "add_time": 1659366589,
-        "up_time": 1659368614,
+        "add_time": 1659428444,
+        "up_time": 1659428444,
         "__v": 0
+      },
+      {
+        "query_path": {
+          "path": "/g/v1/goods",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 31,
+        "method": "POST",
+        "catid": 20,
+        "title": "添加商品",
+        "path": "/g/v1/goods",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1659433502,
+        "up_time": 1659436348,
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "62e8fd3cc9012cc7f1d22570",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"name\":{\"type\":\"string\"},\"goods_brief\":{\"type\":\"string\"},\"ship_free\":{\"type\":\"boolean\",\"description\":\"是否免运费\",\"mock\":{\"mock\":\"@boolean\"}},\"images\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"mock\":{\"mock\":\"@url\"}}},\"front_image\":{\"type\":\"string\",\"mock\":{\"mock\":\"@url\"}},\"stocks\":{\"type\":\"integer\",\"mock\":{\"mock\":\"100\"},\"description\":\"库存\"},\"shop_price\":{\"type\":\"number\",\"mock\":{\"mock\":\"12\"}},\"market_price\":{\"type\":\"number\",\"mock\":{\"mock\":\"20.5\"}},\"goods_sn\":{\"type\":\"string\",\"mock\":{\"mock\":\"@string\"}},\"category\":{\"type\":\"integer\",\"mock\":{\"mock\":\"3001\"}},\"desc_images\":{\"type\":\"array\",\"items\":{\"type\":\"string\"},\"description\":\"商品详情图片\"},\"brand\":{\"type\":\"integer\",\"mock\":{\"mock\":\"5\"},\"description\":\"品牌id\"}},\"required\":[\"name\",\"goods_brief\",\"ship_free\",\"images\",\"front_image\",\"stocks\",\"market_price\",\"goods_sn\",\"category\",\"desc_images\",\"brand\",\"shop_price\"]}",
+        "req_body_type": "json",
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"name\":{\"type\":\"string\"},\"brands_id\":{\"type\":\"integer\"}},\"required\":[\"name\",\"brands_id\"]}"
       }
     ]
   }
