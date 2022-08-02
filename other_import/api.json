@@ -19,7 +19,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 20,
+        "_id": 27,
         "method": "POST",
         "catid": 14,
         "title": "发送短信",
@@ -27,6 +27,9 @@
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1658930638,
+        "up_time": 1659441998,
         "req_query": [],
         "req_headers": [
           {
@@ -37,15 +40,12 @@
           }
         ],
         "req_body_form": [],
+        "__v": 0,
         "desc": "",
         "markdown": "",
         "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"mobile\":{\"type\":\"string\",\"description\":\"手机号码\",\"mock\":{\"mock\":\"15980261234\"}},\"type\":{\"type\":\"integer\",\"description\":\"1=注册，2=找回密码\",\"mock\":{\"mock\":\"1\"}}}}",
         "req_body_type": "json",
-        "res_body": "",
-        "uid": 11,
-        "add_time": 1659322250,
-        "up_time": 1659428444,
-        "__v": 0
+        "res_body": ""
       },
       {
         "query_path": {
@@ -60,7 +60,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 21,
+        "_id": 30,
         "method": "POST",
         "catid": 14,
         "title": "注册",
@@ -68,6 +68,9 @@
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1658931941,
+        "up_time": 1659441998,
         "req_query": [],
         "req_headers": [
           {
@@ -78,15 +81,12 @@
           }
         ],
         "req_body_form": [],
+        "__v": 0,
         "desc": "",
         "markdown": "",
         "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"短信验证码\"},\"mobile\":{\"type\":\"string\",\"description\":\"手机号码\"},\"password\":{\"type\":\"string\",\"description\":\"密码\"}},\"required\":[\"code\",\"mobile\",\"password\"]}",
         "req_body_type": "json",
-        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"id\":{\"type\":\"integer\",\"description\":\"用户id\"},\"nick_name\":{\"type\":\"string\",\"description\":\"昵称\"},\"token\":{\"type\":\"string\",\"description\":\"jwt的token\"}},\"required\":[\"id\",\"nick_name\",\"token\"]}",
-        "uid": 11,
-        "add_time": 1659322250,
-        "up_time": 1659428444,
-        "__v": 0
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"id\":{\"type\":\"integer\",\"description\":\"用户id\"},\"nick_name\":{\"type\":\"string\",\"description\":\"昵称\"},\"token\":{\"type\":\"string\",\"description\":\"jwt的token\"}},\"required\":[\"id\",\"nick_name\",\"token\"]}"
       },
       {
         "query_path": {
@@ -111,7 +111,7 @@
         "res_body_type": "json",
         "uid": 11,
         "add_time": 1658326264,
-        "up_time": 1659428444,
+        "up_time": 1659441998,
         "req_query": [
           {
             "required": "0",
@@ -148,7 +148,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 25,
+        "_id": 42,
         "method": "POST",
         "catid": 14,
         "title": "登录",
@@ -172,8 +172,8 @@
         "res_body": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":[\"token\"]}",
         "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"mobile\":{\"type\":\"string\",\"mock\":{\"mock\":\"15980261234\"},\"description\":\"手机号码\"},\"password\":{\"type\":\"string\",\"description\":\"密码\"}},\"required\":[\"mobile\",\"password\"]}",
         "uid": 11,
-        "add_time": 1659428444,
-        "up_time": 1659428444,
+        "add_time": 1659441998,
+        "up_time": 1659441998,
         "__v": 0
       },
       {
@@ -189,7 +189,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 22,
+        "_id": 21,
         "method": "POST",
         "catid": 14,
         "title": "登录-用户名/密码",
@@ -213,8 +213,8 @@
         "req_body_type": "json",
         "res_body": "",
         "uid": 11,
-        "add_time": 1659322250,
-        "up_time": 1659428444,
+        "add_time": 1658925933,
+        "up_time": 1659441998,
         "__v": 0
       },
       {
@@ -230,7 +230,7 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 19,
+        "_id": 24,
         "method": "POST",
         "catid": 14,
         "title": "登录-用户名/密码/图片验证",
@@ -239,8 +239,8 @@
         "req_params": [],
         "res_body_type": "json",
         "uid": 11,
-        "add_time": 1658823889,
-        "up_time": 1659428444,
+        "add_time": 1658928344,
+        "up_time": 1659441998,
         "req_query": [],
         "req_headers": [
           {
@@ -264,9 +264,90 @@
     "index": 0,
     "name": "商品",
     "desc": "商品微服务",
-    "add_time": 1659428444,
-    "up_time": 1659428444,
+    "add_time": 1659363363,
+    "up_time": 1659363363,
     "list": [
+      {
+        "query_path": {
+          "path": "/g/v1/goods/33",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": false,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 66,
+        "method": "PATCH",
+        "catid": 15,
+        "title": "修改商品状态",
+        "path": "/g/v1/goods/33",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1659445721,
+        "up_time": 1659445873,
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "62e9227119d9d684dbf17274",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"sale\":{\"type\":\"boolean\",\"description\":\"是否上架\"},\"new\":{\"type\":\"boolean\",\"description\":\"是否新品\"},\"hot\":{\"type\":\"boolean\",\"description\":\"是否热销\"}}}",
+        "req_body_type": "json",
+        "res_body": ""
+      },
+      {
+        "query_path": {
+          "path": "/g/v1/goods/34",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": false,
+        "res_body_is_json_schema": false,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 74,
+        "method": "DELETE",
+        "catid": 15,
+        "title": "删除商品",
+        "path": "/g/v1/goods/34",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1659445928,
+        "up_time": 1659445971,
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "62e922d319d9d67720f17275",
+            "name": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "req_body_type": "form",
+        "res_body": ""
+      },
       {
         "query_path": {
           "path": "/g/v1/goods",
@@ -280,14 +361,17 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 28,
+        "_id": 34,
         "method": "GET",
-        "catid": 20,
+        "catid": 15,
         "title": "商品列表",
         "path": "/g/v1/goods",
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1659363385,
+        "up_time": 1659441998,
         "req_query": [
           {
             "required": "0",
@@ -362,13 +446,42 @@
         ],
         "req_headers": [],
         "req_body_form": [],
+        "__v": 0,
         "desc": "",
         "markdown": "",
-        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"brand\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"logo\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}}},\"category\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"name\":{\"type\":\"string\"}}},\"desc\":{\"type\":\"string\"},\"ship_free\":{\"type\":\"boolean\"},\"shop_price\":{\"type\":\"number\"},\"desc_images\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"front_image\":{\"type\":\"string\"},\"goods_brief\":{\"type\":\"string\"},\"id\":{\"type\":\"number\"},\"images\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"is_hot\":{\"type\":\"boolean\"},\"is_new\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"on_sale\":{\"type\":\"boolean\"}},\"required\":[\"brand\",\"category\",\"desc\",\"desc_images\",\"front_image\",\"goods_brief\",\"id\",\"images\",\"is_hot\",\"is_new\",\"name\",\"on_sale\",\"ship_free\",\"shop_price\"]}},\"total\":{\"type\":\"number\"}},\"required\":[\"total\"]}",
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"brand\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"logo\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}}},\"category\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"name\":{\"type\":\"string\"}}},\"desc\":{\"type\":\"string\"},\"ship_free\":{\"type\":\"boolean\"},\"shop_price\":{\"type\":\"number\"},\"desc_images\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"front_image\":{\"type\":\"string\"},\"goods_brief\":{\"type\":\"string\"},\"id\":{\"type\":\"number\"},\"images\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"is_hot\":{\"type\":\"boolean\"},\"is_new\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"on_sale\":{\"type\":\"boolean\"}},\"required\":[\"brand\",\"category\",\"desc\",\"desc_images\",\"front_image\",\"goods_brief\",\"id\",\"images\",\"is_hot\",\"is_new\",\"name\",\"on_sale\",\"ship_free\",\"shop_price\"]}},\"total\":{\"type\":\"number\"}},\"required\":[\"total\"]}"
+      },
+      {
+        "query_path": {
+          "path": "/g/v1/goods/33",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": false,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 58,
+        "method": "GET",
+        "catid": 15,
+        "title": "商品详情",
+        "path": "/g/v1/goods/33",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
         "uid": 11,
-        "add_time": 1659428444,
-        "up_time": 1659428444,
-        "__v": 0
+        "add_time": 1659444837,
+        "up_time": 1659445080,
+        "req_query": [],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"id\":{\"type\":\"integer\"},\"name\":{\"type\":\"string\"},\"shop_price\":{\"type\":\"number\"},\"goods_brief\":{\"type\":\"string\"},\"ship_free\":{\"type\":\"boolean\"},\"images\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"front_image\":{\"type\":\"string\"},\"desc\":{\"type\":\"string\"}}}"
       },
       {
         "query_path": {
@@ -383,17 +496,14 @@
         "api_opened": false,
         "index": 0,
         "tag": [],
-        "_id": 31,
+        "_id": 50,
         "method": "POST",
-        "catid": 20,
+        "catid": 15,
         "title": "添加商品",
         "path": "/g/v1/goods",
         "project_id": 11,
         "req_params": [],
         "res_body_type": "json",
-        "uid": 11,
-        "add_time": 1659433502,
-        "up_time": 1659436348,
         "req_query": [],
         "req_headers": [
           {
@@ -404,12 +514,187 @@
           }
         ],
         "req_body_form": [],
-        "__v": 0,
         "desc": "",
         "markdown": "",
         "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"name\":{\"type\":\"string\"},\"goods_brief\":{\"type\":\"string\"},\"ship_free\":{\"type\":\"boolean\",\"description\":\"是否免运费\",\"mock\":{\"mock\":\"@boolean\"}},\"images\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"mock\":{\"mock\":\"@url\"}}},\"front_image\":{\"type\":\"string\",\"mock\":{\"mock\":\"@url\"}},\"stocks\":{\"type\":\"integer\",\"mock\":{\"mock\":\"100\"},\"description\":\"库存\"},\"shop_price\":{\"type\":\"number\",\"mock\":{\"mock\":\"12\"}},\"market_price\":{\"type\":\"number\",\"mock\":{\"mock\":\"20.5\"}},\"goods_sn\":{\"type\":\"string\",\"mock\":{\"mock\":\"@string\"}},\"category\":{\"type\":\"integer\",\"mock\":{\"mock\":\"3001\"}},\"desc_images\":{\"type\":\"array\",\"items\":{\"type\":\"string\"},\"description\":\"商品详情图片\"},\"brand\":{\"type\":\"integer\",\"mock\":{\"mock\":\"5\"},\"description\":\"品牌id\"}},\"required\":[\"name\",\"goods_brief\",\"ship_free\",\"images\",\"front_image\",\"stocks\",\"market_price\",\"goods_sn\",\"category\",\"desc_images\",\"brand\",\"shop_price\"]}",
         "req_body_type": "json",
-        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"name\":{\"type\":\"string\"},\"brands_id\":{\"type\":\"integer\"}},\"required\":[\"name\",\"brands_id\"]}"
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"name\":{\"type\":\"string\"},\"brands_id\":{\"type\":\"integer\"}},\"required\":[\"name\",\"brands_id\"]}",
+        "uid": 11,
+        "add_time": 1659441998,
+        "up_time": 1659441998,
+        "__v": 0
+      },
+      {
+        "query_path": {
+          "path": "/g/v1/categorys/3001",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": false,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 82,
+        "method": "GET",
+        "catid": 15,
+        "title": "获取分类详情",
+        "path": "/g/v1/categorys/3001",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1659447116,
+        "up_time": 1659447284,
+        "req_query": [],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "res_body": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\"},\"is_tab\":{\"type\":\"boolean\"},\"level\":{\"type\":\"number\"},\"name\":{\"type\":\"string\"},\"parent_category\":{\"type\":\"number\"},\"sub_categorys\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}"
+      }
+    ]
+  },
+  {
+    "index": 0,
+    "name": "轮播图",
+    "desc": "商品微服务",
+    "add_time": 1659447969,
+    "up_time": 1659447969,
+    "list": [
+      {
+        "query_path": {
+          "path": "/g/v1/banners/1",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": false,
+        "res_body_is_json_schema": false,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 106,
+        "method": "PUT",
+        "catid": 17,
+        "title": "修改轮播图",
+        "path": "/g/v1/banners/1",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1659448172,
+        "up_time": 1659448172,
+        "req_query": [],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0
+      },
+      {
+        "query_path": {
+          "path": "/g/v1/banners/1",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": false,
+        "res_body_is_json_schema": false,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 98,
+        "method": "DELETE",
+        "catid": 17,
+        "title": "删除轮播图",
+        "path": "/g/v1/banners/1",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1659448143,
+        "up_time": 1659448143,
+        "req_query": [],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0
+      },
+      {
+        "query_path": {
+          "path": "/g/v1/banners",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": false,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 90,
+        "method": "POST",
+        "catid": 17,
+        "title": "添加轮播图",
+        "path": "/g/v1/banners",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1659448016,
+        "up_time": 1659448380,
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "62e92c3c19d9d63d43f1727a",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"image\":{\"type\":\"string\",\"mock\":{\"mock\":\"@url\"},\"description\":\"图片的url\"},\"index\":{\"type\":\"integer\",\"mock\":{\"mock\":\"1\"},\"description\":\"排序\"},\"url\":{\"type\":\"string\",\"mock\":{\"mock\":\"@url\"},\"description\":\"点击跳转的url\"}},\"required\":[\"url\"]}",
+        "req_body_type": "json",
+        "res_body": ""
+      },
+      {
+        "query_path": {
+          "path": "/g/v1/banners",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": false,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 114,
+        "method": "GET",
+        "catid": 17,
+        "title": "轮播图列表",
+        "path": "/g/v1/banners",
+        "project_id": 11,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 11,
+        "add_time": 1659448201,
+        "up_time": 1659448599,
+        "req_query": [],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "res_body": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"image\":{\"type\":\"string\"},\"index\":{\"type\":\"number\"},\"url\":{\"type\":\"string\"}},\"required\":[\"id\",\"image\",\"index\",\"url\"]}}"
       }
     ]
   }
