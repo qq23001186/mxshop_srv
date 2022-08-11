@@ -2,9 +2,14 @@ package handler
 
 import (
 	"context"
+	"fmt"
+	"github.com/go-redsync/redsync/v4"
+	"github.com/go-redsync/redsync/v4/redis/goredis/v8"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
+
+	goredislib "github.com/go-redis/redis/v8"
 	"nd/inventory_srv/global"
 	"nd/inventory_srv/model"
 	"nd/inventory_srv/proto"
@@ -37,26 +42,38 @@ func (*InventoryServer) InvDetail(ctx context.Context, req *proto.GoodsInvInfo) 
 }
 
 func (*InventoryServer) Sell(ctx context.Context, req *proto.SellInfo) (*emptypb.Empty, error) {
-	// 扣减库存，本地事务
-	// 数据库基本的一个应用场景：数据库事务
-	// 并发情况之下 可能会出现超卖 1
+	client := goredislib.NewClient(&goredislib.Options{
+		Addr: "192.168.78.131:6379",
+	})
+	pool := goredis.NewPool(client) // or, pool := redigo.NewPool(...)
+	rs := redsync.New(pool)
+
 	tx := global.DB.Begin()
 	for _, goodInfo := range req.GoodsInfo {
 		var inv model.Inventory
+		mutex := rs.NewMutex(fmt.Sprintf("goods_%d", goodInfo.GoodsId))
+		if err := mutex.Lock(); err != nil {
+			return nil, status.Errorf(codes.Internal, "获取redis分布式锁异常")
+		}
 		if result := global.DB.Where(&model.Inventory{Goods: goodInfo.GoodsId}).First(&inv); result.RowsAffected == 0 {
-			tx.Rollback() // 回滚之前的操作
+			tx.Rollback() //回滚之前的操作
 			return nil, status.Errorf(codes.InvalidArgument, "没有库存信息")
 		}
-		// 判断库存是否充足
+		//判断库存是否充足
 		if inv.Stocks < goodInfo.Num {
-			tx.Rollback() // 回滚之前的操作
+			tx.Rollback() //回滚之前的操作
 			return nil, status.Errorf(codes.ResourceExhausted, "库存不足")
 		}
-		// 扣减，这里会出现数据不一致的问题
+		//扣减， 会出现数据不一致的问题 - 锁，分布式锁
 		inv.Stocks -= goodInfo.Num
-		tx.Save(&inv) // 一旦使用了事务的，保存修改数据库的操作就需要使用事务的tx，而不能使用db
+		tx.Save(&inv)
+
+		if ok, err := mutex.Unlock(); !ok || err != nil {
+			return nil, status.Errorf(codes.Internal, "释放redis分布式锁异常")
+		}
 	}
 	tx.Commit() // 需要自己手动提交操作
+	//m.Unlock() //释放锁
 	return &emptypb.Empty{}, nil
 }
 
