@@ -77,22 +77,22 @@ func TestReback() {
 
 func main() {
 	Init()
-	//var i int32
-	//for i = 1; i <= 9; i++ {
-	//	TestSetInv(i, 90)
-	//}
+	var i int32
+	for i = 26; i <= 34; i++ {
+		TestSetInv(i, 100)
+	}
 
 	//TestInvDetail(2)
 	//TestSell()
 	//TestReback()
 
-	//并发情况之下，库存无法正确的扣减
-	var wg sync.WaitGroup
-	wg.Add(20)
-	for i := 0; i < 20; i++ {
-		go TestSell(&wg)
-	}
-
-	wg.Wait()
+	////并发情况之下，库存无法正确的扣减
+	//var wg sync.WaitGroup
+	//wg.Add(20)
+	//for i := 0; i < 20; i++ {
+	//	go TestSell(&wg)
+	//}
+	//
+	//wg.Wait()
 	conn.Close()
 }

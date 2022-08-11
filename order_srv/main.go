@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"nd/order_srv/handler"
 	"net"
 	"os"
 	"os/signal"
@@ -15,7 +16,6 @@ import (
 	"google.golang.org/grpc/health/grpc_health_v1"
 
 	"nd/order_srv/global"
-	"nd/order_srv/handler"
 	"nd/order_srv/initialize"
 	"nd/order_srv/proto"
 	"nd/order_srv/utils"
@@ -24,12 +24,13 @@ import (
 
 func main() {
 	IP := flag.String("ip", "0.0.0.0", "ip地址")
-	Port := flag.Int("port", 50059, "端口号") // 这个修改为0，如果我们从命令行带参数启动的话就不会为0
+	Port := flag.Int("port", 50060, "端口号") // 这个修改为0，如果我们从命令行带参数启动的话就不会为0
 
 	//初始化
 	initialize.InitLogger()
 	initialize.InitConfig()
 	initialize.InitDB()
+	initialize.InitSrvConn()
 	zap.S().Info(global.ServerConfig)
 
 	flag.Parse()
@@ -40,7 +41,7 @@ func main() {
 	zap.S().Info("port: ", *Port)
 
 	server := grpc.NewServer()
-	proto.RegisterInventoryServer(server, &handler.InventoryServer{})
+	proto.RegisterOrderServer(server, &handler.OrderServer{})
 	lis, err := net.Listen("tcp", fmt.Sprintf("%s:%d", *IP, *Port))
 	if err != nil {
 		panic("failed to listen:" + err.Error())
