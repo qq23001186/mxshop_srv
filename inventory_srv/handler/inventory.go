@@ -44,7 +44,7 @@ func (*InventoryServer) InvDetail(ctx context.Context, req *proto.GoodsInvInfo) 
 func (*InventoryServer) Sell(ctx context.Context, req *proto.SellInfo) (*emptypb.Empty, error) {
 	client := goredislib.NewClient(&goredislib.Options{
 		//Addr: "192.168.78.131:6379",
-		Addr: "192.168.124.51:6379",
+		Addr: fmt.Sprintf("%s:%d", global.ServerConfig.RedisInfo.Host, global.ServerConfig.RedisInfo.Port),
 	})
 	pool := goredis.NewPool(client) // or, pool := redigo.NewPool(...)
 	rs := redsync.New(pool)
