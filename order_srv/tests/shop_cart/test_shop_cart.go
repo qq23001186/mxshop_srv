@@ -43,8 +43,8 @@ func TestUpdateCartItem(id int32) {
 
 func main() {
 	tests.Init()
-	TestCreateCartItem(1, 1, 26)
-	TestCreateCartItem(1, 1, 27)
+	TestCreateCartItem(1, 1, 1)
+	TestCreateCartItem(1, 1, 2)
 	TestCartItemList(1)
 	TestUpdateCartItem(1)
 	tests.Conn.Close()

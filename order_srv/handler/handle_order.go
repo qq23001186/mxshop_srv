@@ -64,7 +64,7 @@ func (*OrderServer) UpdateCartItem(ctx context.Context, req *proto.CartItemReque
 	//更新购物车记录，更新数量和选中状态
 	var shopCart model.ShoppingCart
 
-	if result := global.DB.First(&shopCart, req.Id); result.RowsAffected == 0 {
+	if result := global.DB.Where("goods=? and user=?", req.GoodsId, req.UserId).First(&shopCart); result.RowsAffected == 0 {
 		return nil, status.Errorf(codes.NotFound, "购物车记录不存在")
 	}
 
