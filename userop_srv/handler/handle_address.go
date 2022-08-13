@@ -63,7 +63,7 @@ func (*UserOpServer) UpdateAddress(ctx context.Context, req *proto.AddressReques
 	var address model.Address
 
 	if result := global.DB.Where("id=? and user=?", req.Id, req.UserId).First(&address); result.RowsAffected == 0 {
-		return nil, status.Errorf(codes.NotFound, "购物车记录不存在")
+		return nil, status.Errorf(codes.NotFound, "地址不存在")
 	}
 
 	if address.Province != "" {
