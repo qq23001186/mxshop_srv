@@ -29,6 +29,7 @@ func main() {
 	initialize.InitLogger()
 	initialize.InitConfig()
 	initialize.InitDB()
+	initialize.InitEs()
 	zap.S().Info(global.ServerConfig)
 
 	flag.Parse()
