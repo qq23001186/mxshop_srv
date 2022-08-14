@@ -38,5 +38,16 @@ func main() {
 		panic(err)
 	}
 
-	_ = db.AutoMigrate(&model.Inventory{})
+	//_ = db.AutoMigrate(&model.Inventory{}, &model.StockSellDetail{})
+	//插入一条数据
+	orderDetail := model.StockSellDetail{
+		OrderSn: "imooc-bobby",
+		Status:  1,
+		Detail:  []model.GoodsDetail{{1, 2}, {2, 3}},
+	}
+	db.Create(&orderDetail)
+
+	var sellDetail model.StockSellDetail
+	db.Where(model.StockSellDetail{OrderSn: "imooc-bobby"}).First(&sellDetail)
+	fmt.Println(sellDetail.Detail)
 }

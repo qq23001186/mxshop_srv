@@ -2,12 +2,17 @@ package handler
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"github.com/apache/rocketmq-client-go/v2/consumer"
+	"github.com/apache/rocketmq-client-go/v2/primitive"
 	"github.com/go-redsync/redsync/v4"
 	"github.com/go-redsync/redsync/v4/redis/goredis/v8"
+	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"gorm.io/gorm"
 
 	goredislib "github.com/go-redis/redis/v8"
 	"nd/inventory_srv/global"
@@ -50,7 +55,21 @@ func (*InventoryServer) Sell(ctx context.Context, req *proto.SellInfo) (*emptypb
 	rs := redsync.New(pool)
 
 	tx := global.DB.Begin()
+
+	//这个时候应该先查询表，然后确定这个订单是否已经扣减过库存了，已经扣减过了就别扣减了
+	//并发时候会有漏洞， 同一个时刻发送了重复了多次， 使用锁，分布式锁
+	sellDetail := model.StockSellDetail{
+		OrderSn: req.OrderSn,
+		Status:  1,
+	}
+	var details []model.GoodsDetail
+
 	for _, goodInfo := range req.GoodsInfo {
+		details = append(details, model.GoodsDetail{
+			Goods: goodInfo.GoodsId,
+			Num:   goodInfo.Num,
+		})
+
 		var inv model.Inventory
 		mutex := rs.NewMutex(fmt.Sprintf("goods_%d", goodInfo.GoodsId))
 		if err := mutex.Lock(); err != nil {
@@ -73,6 +92,12 @@ func (*InventoryServer) Sell(ctx context.Context, req *proto.SellInfo) (*emptypb
 			return nil, status.Errorf(codes.Internal, "释放redis分布式锁异常")
 		}
 	}
+	sellDetail.Detail = details
+	//写selldetail表
+	if result := tx.Create(&sellDetail); result.RowsAffected == 0 {
+		tx.Rollback()
+		return nil, status.Errorf(codes.Internal, "保存库存扣减历史失败")
+	}
 	tx.Commit() // 需要自己手动提交操作
 	//m.Unlock() //释放锁
 	return &emptypb.Empty{}, nil
@@ -94,4 +119,45 @@ func (*InventoryServer) Reback(ctx context.Context, req *proto.SellInfo) (*empty
 	}
 	tx.Commit() // 需要自己手动提交操作
 	return &emptypb.Empty{}, nil
+}
+
+func AutoReback(ctx context.Context, msgs ...*primitive.MessageExt) (consumer.ConsumeResult, error) {
+	type OrderInfo struct {
+		OrderSn string
+	}
+	for i := range msgs {
+		//既然是归还库存，那么我应该具体的知道每件商品应该归还多少， 但是有一个问题是什么？重复归还的问题
+		//所以说这个接口应该确保幂等性， 你不能因为消息的重复发送导致一个订单的库存归还多次， 没有扣减的库存你别归还
+		//如何确保这些都没有问题， 新建一张表， 这张表记录了详细的订单扣减细节，以及归还细节
+		var orderInfo OrderInfo
+		err := json.Unmarshal(msgs[i].Body, &orderInfo)
+		if err != nil {
+			zap.S().Errorf("解析json失败： %v\n", msgs[i].Body)
+			return consumer.ConsumeSuccess, nil
+		}
+
+		//将inv的库存加回去 将selldetail的status设置为2， 要在事务中进行
+		tx := global.DB.Begin()
+		var sellDetail model.StockSellDetail
+		if result := tx.Model(&model.StockSellDetail{}).Where(&model.StockSellDetail{OrderSn: orderInfo.OrderSn, Status: 1}).First(&sellDetail); result.RowsAffected == 0 {
+			return consumer.ConsumeSuccess, nil
+		}
+		//如果查询到那么逐个归还库存
+		for _, orderGood := range sellDetail.Detail {
+			//update怎么用
+			//先查询一下inventory表在， update语句的 update xx set stocks=stocks+2
+			if result := tx.Model(&model.Inventory{}).Where(&model.Inventory{Goods: orderGood.Goods}).Update("stocks", gorm.Expr("stocks+?", orderGood.Num)); result.RowsAffected == 0 {
+				tx.Rollback()
+				return consumer.ConsumeRetryLater, nil
+			}
+		}
+
+		if result := tx.Model(&model.StockSellDetail{}).Where(&model.StockSellDetail{OrderSn: orderInfo.OrderSn}).Update("status", 2); result.RowsAffected == 0 {
+			tx.Rollback()
+			return consumer.ConsumeRetryLater, nil
+		}
+		tx.Commit()
+		return consumer.ConsumeSuccess, nil
+	}
+	return consumer.ConsumeSuccess, nil
 }
