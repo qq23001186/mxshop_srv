@@ -8,6 +8,7 @@ import (
 	"github.com/apache/rocketmq-client-go/v2/consumer"
 	"github.com/apache/rocketmq-client-go/v2/primitive"
 	"github.com/apache/rocketmq-client-go/v2/producer"
+	"github.com/opentracing/opentracing-go"
 	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -177,17 +178,22 @@ type OrderListener struct {
 }
 
 func (o *OrderListener) ExecuteLocalTransaction(msg *primitive.Message) primitive.LocalTransactionState {
+	parentSpan := opentracing.SpanFromContext(o.Ctx)
+
 	var orderInfo model.OrderInfo
 	_ = json.Unmarshal(msg.Body, &orderInfo)
 
 	var goodsIds []int32
 	var shopCarts []model.ShoppingCart
 	goodsNumsMap := make(map[int32]int32)
+
+	shopCartSpan := opentracing.GlobalTracer().StartSpan("select_shopcart", opentracing.ChildOf(parentSpan.Context()))
 	if result := global.DB.Where(&model.ShoppingCart{User: orderInfo.User, Checked: true}).Find(&shopCarts); result.RowsAffected == 0 {
 		o.Code = codes.InvalidArgument
 		o.Detail = "没有选中结算的商品"
 		return primitive.RollbackMessageState
 	}
+	shopCartSpan.Finish()
 
 	for _, shopCarts := range shopCarts {
 		goodsIds = append(goodsIds, shopCarts.Goods)
@@ -195,12 +201,14 @@ func (o *OrderListener) ExecuteLocalTransaction(msg *primitive.Message) primitiv
 	}
 
 	//跨服务调用 - 商品微服务 —— 批量查询商品与价格
+	queryGoodsSpan := opentracing.GlobalTracer().StartSpan("query_goods", opentracing.ChildOf(parentSpan.Context()))
 	goods, err := global.GoodsSrvClient.BatchGetGoods(context.Background(), &proto.BatchGoodsIdInfo{Id: goodsIds})
 	if err != nil {
 		o.Code = codes.Internal
 		o.Detail = "批量查询商品信息失败"
 		return primitive.RollbackMessageState
 	}
+	queryGoodsSpan.Finish()
 
 	var orderAmount float32
 	var orderGoods []*model.OrderGoods
@@ -220,22 +228,26 @@ func (o *OrderListener) ExecuteLocalTransaction(msg *primitive.Message) primitiv
 		})
 	}
 	//跨服务调用 - 库存微服务 —— 扣减库存
+	queryInvSpan := opentracing.GlobalTracer().StartSpan("query_inv", opentracing.ChildOf(parentSpan.Context()))
 	if _, err = global.InventorySrvClient.Sell(context.Background(), &proto.SellInfo{OrderSn: orderInfo.OrderSn, GoodsInfo: goodsInvInfo}); err != nil {
 		//如果是因为网络问题， 这种如何避免误判， 大家自己改写一下sell的返回逻辑
 		o.Code = codes.ResourceExhausted
 		o.Detail = "扣减库存失败"
 		return primitive.RollbackMessageState
 	}
+	queryInvSpan.Finish()
 
 	tx := global.DB.Begin()
 	//生成订单表
 	orderInfo.OrderMount = orderAmount
+	saveOrderSpan := opentracing.GlobalTracer().StartSpan("save_order", opentracing.ChildOf(parentSpan.Context()))
 	if result := tx.Save(&orderInfo); result.RowsAffected == 0 {
 		tx.Rollback()
 		o.Code = codes.Internal
 		o.Detail = "创建订单失败"
 		return primitive.CommitMessageState
 	}
+	saveOrderSpan.Finish()
 
 	o.OrderAmount = orderAmount
 	o.ID = orderInfo.ID
@@ -244,23 +256,27 @@ func (o *OrderListener) ExecuteLocalTransaction(msg *primitive.Message) primitiv
 	}
 
 	// 批量插入orderGoods
+	saveOrderGoodsSpan := opentracing.GlobalTracer().StartSpan("save_order_goods", opentracing.ChildOf(parentSpan.Context()))
 	if result := tx.CreateInBatches(orderGoods, 100); result.RowsAffected == 0 {
 		tx.Rollback()
 		o.Code = codes.Internal
 		o.Detail = "批量插入订单商品失败"
 		return primitive.CommitMessageState
 	}
+	saveOrderGoodsSpan.Finish()
 
 	// 删除购物车的记录
+	deleteShopCartSpan := opentracing.GlobalTracer().StartSpan("delete_shopcart", opentracing.ChildOf(parentSpan.Context()))
 	if result := tx.Where(&model.ShoppingCart{User: orderInfo.User, Checked: true}).Delete(&model.ShoppingCart{}); result.RowsAffected == 0 {
 		tx.Rollback()
 		o.Code = codes.Internal
 		o.Detail = "删除购物车记录失败"
 		return primitive.CommitMessageState
 	}
+	deleteShopCartSpan.Finish()
 
 	//发送延时消息
-	p, err := rocketmq.NewProducer(producer.WithNameServer([]string{"192.168.0.104:9876"}))
+	p, err := rocketmq.NewProducer(producer.WithNameServer([]string{"192.168.124.51:9876"}))
 	if err != nil {
 		panic("生成producer失败")
 	}
